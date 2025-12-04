@@ -21,10 +21,7 @@ var KEY = ""
 
 func _ready():
 	defaultMenuName = "Choose Cipher"
-	_Create_PlayFair_Matrix()
-
 	
-
 	
 func _on_choose_cipher_pressed():
 	cipher_menu.visible = !cipher_menu.visible
@@ -35,9 +32,7 @@ func _set_cipher_name(CipherName : String):
 func _on_hill_cipher_pressed():
 	_set_cipher_name("Hill Cipher")
 	cipher_menu.visible = false
-	PlainText = text_entry.text
-	KEY = key_entry.text
-	print("plain text : " , PlainText)
+	_get_input()
 	
 func _on_reset_pressed():
 	text_entry.clear()
@@ -49,10 +44,15 @@ func _Create_PlayFair_Matrix():
 	
 	for i in 25:
 		var new_cell = cell.instantiate()
-		new_cell.get_child(0).get_child(0).text = Alphabet[i]
-		grid_container.add_child(new_cell)
-	_create_Array2D()
-	_print()
+		if(KEY != ""):
+			if(i<5):
+				new_cell.get_child(0).get_child(0).text = KEY[i]
+				new_cell.get_child(0).get_child(0).set("theme_override_colors/font_color", Color.YELLOW)
+			else:
+				new_cell.get_child(0).get_child(0).text = Alphabet[i]
+			grid_container.add_child(new_cell)
+			_create_Array2D()
+	#_print()
 	
 func _create_Array2D():
 	for i in 5 :
@@ -64,3 +64,14 @@ func _print():
 	for i in range(Array2D.size()):
 		for j in range(Array2D[i].size()):  
 			print(Array2D[i][j].get_child(0).get_child(0).text)
+
+func _get_input():
+	PlainText = text_entry.text
+	KEY = key_entry.text
+	print("plain text : " , PlainText)
+
+func _on_play_fair_pressed():
+	cipher_menu.visible = !cipher_menu.visible
+	_set_cipher_name("Play Fair")
+	_get_input()
+	_Create_PlayFair_Matrix()

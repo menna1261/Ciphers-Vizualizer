@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://netk700n3adc"]
+[gd_scene load_steps=10 format=3 uid="uid://netk700n3adc"]
 
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="1_fnd0r"]
 [ext_resource type="Script" path="res://Scenes/CipherScene.gd" id="1_pefqs"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://c3su3ho7e2c85" path="res://Assets/hover.png" id="2_lpgij"]
 [ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="3_yevfl"]
 [ext_resource type="Texture2D" uid="uid://cv7in5m1vo1td" path="res://Assets/refresh 2.png" id="6_m3jry"]
-[ext_resource type="PackedScene" uid="uid://d1xyfipimu0mk" path="res://Scenes/cell.tscn" id="7_c4bwj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22qlw"]
 texture = ExtResource("1_fnd0r")
@@ -75,7 +74,7 @@ text = "Hill Cipher"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HillCipher2" type="TextureButton" parent="Panel/ChooseCipher/CipherMenu"]
+[node name="PlayFair" type="TextureButton" parent="Panel/ChooseCipher/CipherMenu"]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 56.0
@@ -85,7 +84,7 @@ texture_hover = ExtResource("2_lpgij")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Panel/ChooseCipher/CipherMenu/HillCipher2"]
+[node name="Label" type="Label" parent="Panel/ChooseCipher/CipherMenu/PlayFair"]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 7.0
@@ -94,7 +93,7 @@ offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.435294, 0.0941176, 0.713726, 1)
 theme_override_fonts/font = ExtResource("3_yevfl")
 theme_override_font_sizes/font_size = 25
-text = "Hill Cipher"
+text = "Play Fair"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -220,8 +219,6 @@ theme_override_colors/icon_normal_color = Color(0.964706, 0.972549, 0.988235, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgunu")
 icon = ExtResource("6_m3jry")
 
-[node name="cell" parent="." instance=ExtResource("7_c4bwj")]
-
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
 offset_left = 634.0
@@ -234,7 +231,7 @@ columns = 5
 
 [connection signal="pressed" from="Panel/ChooseCipher" to="." method="_on_choose_cipher_pressed"]
 [connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/HillCipher" to="." method="_on_hill_cipher_pressed"]
-[connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/HillCipher2" to="." method="_on_hill_cipher_pressed"]
+[connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/PlayFair" to="." method="_on_play_fair_pressed"]
 [connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/HillCipher3" to="." method="_on_hill_cipher_pressed"]
 [connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/HillCipher4" to="." method="_on_hill_cipher_pressed"]
 [connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
