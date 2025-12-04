@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://netk700n3adc"]
+[gd_scene load_steps=11 format=3 uid="uid://netk700n3adc"]
 
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="1_fnd0r"]
 [ext_resource type="Script" path="res://Scenes/CipherScene.gd" id="1_pefqs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3su3ho7e2c85" path="res://Assets/hover.png" id="2_lpgij"]
 [ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="3_yevfl"]
 [ext_resource type="Texture2D" uid="uid://cv7in5m1vo1td" path="res://Assets/refresh 2.png" id="6_m3jry"]
+[ext_resource type="PackedScene" uid="uid://d1xyfipimu0mk" path="res://Scenes/cell.tscn" id="7_c4bwj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22qlw"]
 texture = ExtResource("1_fnd0r")
@@ -24,6 +25,7 @@ grow_vertical = 2
 script = ExtResource("1_pefqs")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = -12.0
 offset_right = 1160.0
 offset_bottom = 645.0
@@ -217,6 +219,18 @@ offset_bottom = 103.0
 theme_override_colors/icon_normal_color = Color(0.964706, 0.972549, 0.988235, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgunu")
 icon = ExtResource("6_m3jry")
+
+[node name="cell" parent="." instance=ExtResource("7_c4bwj")]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 634.0
+offset_top = 208.0
+offset_right = 674.0
+offset_bottom = 248.0
+theme_override_constants/h_separation = 72
+theme_override_constants/v_separation = 63
+columns = 5
 
 [connection signal="pressed" from="Panel/ChooseCipher" to="." method="_on_choose_cipher_pressed"]
 [connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/HillCipher" to="." method="_on_hill_cipher_pressed"]
