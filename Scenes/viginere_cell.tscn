@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://chop43aenbjys"]
+
+[ext_resource type="Texture2D" uid="uid://cdwhgs8oeh0fk" path="res://Assets/Rectangle.png" id="1_xqq4m"]
+[ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="2_arlk1"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="MatrixCell" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.457099, 0.5375)
+texture = ExtResource("1_xqq4m")
+
+[node name="Label" type="Label" parent="MatrixCell"]
+offset_left = -48.0
+offset_top = -43.0
+offset_right = 48.0
+offset_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("2_arlk1")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
