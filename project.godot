@@ -12,8 +12,12 @@ config_version=5
 
 config/name="Crypto"
 run/main_scene="res://Scenes/CipherScene.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Scenes/global.gd"
 
 [rendering]
 
