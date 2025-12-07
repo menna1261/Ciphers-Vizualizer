@@ -11,9 +11,12 @@ texture = ExtResource("1_4e8cu")
 [node name="ViginereCipher" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = -1.0
+offset_right = -1.0
 script = ExtResource("1_cl0gp")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = -12.0
 offset_right = 2509.0
 offset_bottom = 1820.0
@@ -66,6 +69,7 @@ theme_override_font_sizes/font_size = 60
 text = "Plain Text :"
 
 [node name="Key2" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 1837.0
 offset_top = 372.0
 offset_right = 1941.0
@@ -74,6 +78,7 @@ theme_override_fonts/font = ExtResource("2_cl0gp")
 theme_override_font_sizes/font_size = 60
 
 [node name="CipherText2" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 1837.0
 offset_top = 585.0
 offset_right = 2121.0
@@ -82,6 +87,7 @@ theme_override_fonts/font = ExtResource("2_cl0gp")
 theme_override_font_sizes/font_size = 60
 
 [node name="PlainText2" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 1837.0
 offset_top = 478.0
 offset_right = 2097.0
@@ -90,6 +96,7 @@ theme_override_fonts/font = ExtResource("2_cl0gp")
 theme_override_font_sizes/font_size = 60
 
 [node name="ViginereGrid" type="GridContainer" parent="."]
+layout_mode = 0
 offset_left = 209.0
 offset_top = 378.0
 offset_right = 209.0
@@ -104,7 +111,9 @@ offset_left = 192.0
 offset_top = 293.0
 offset_right = 232.0
 offset_bottom = 293.0
+grow_vertical = 2
 theme_override_constants/separation = 28
+metadata/_edit_use_anchors_ = true
 
 [node name="Valphabet" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -113,13 +122,14 @@ offset_top = 356.0
 offset_right = 171.0
 offset_bottom = 396.0
 theme_override_constants/separation = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 190.0
-offset_top = 89.0
-offset_right = 326.0
-offset_bottom = 225.0
+offset_left = 148.0
+offset_top = 87.0
+offset_right = 284.0
+offset_bottom = 223.0
 theme_override_icons/icon = ExtResource("4_4e8cu")
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

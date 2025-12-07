@@ -21,21 +21,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_pefqs")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = -12.0
-offset_right = 1160.0
-offset_bottom = 645.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_22qlw")
 
 [node name="ChooseCipher" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 865.0
-offset_top = 43.0
-offset_right = 1099.0
-offset_bottom = 108.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.972
+anchor_top = 0.054
+anchor_right = 0.972
+anchor_bottom = 0.054
+offset_left = -233.744
+offset_top = 0.00799942
+offset_right = 0.255981
+offset_bottom = 65.008
+grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_yevfl")
 theme_override_font_sizes/font_size = 35
 text = "Choose Cipher"
@@ -210,11 +220,17 @@ offset_bottom = 491.0
 theme_override_colors/background_color = Color(0.968627, 0.866667, 1, 0.196078)
 
 [node name="Reset" type="Button" parent="."]
-layout_mode = 0
-offset_left = 759.0
-offset_top = 50.0
-offset_right = 814.0
-offset_bottom = 103.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.763
+anchor_top = 0.056
+anchor_right = 0.763
+anchor_bottom = 0.056
+offset_left = -54.976
+offset_top = -0.288002
+offset_right = 0.0239868
+offset_bottom = 52.712
+grow_horizontal = 0
 theme_override_colors/icon_normal_color = Color(0.964706, 0.972549, 0.988235, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgunu")
 icon = ExtResource("6_m3jry")

@@ -14,7 +14,7 @@ const found_style = preload("res://Assets/green_style_box_flat.tres")
 
 func _ready() -> void:
 	previous_size = DisplayServer.window_get_size()
-	
+
 	DisplayServer.window_set_size(Vector2i(2500, 1800))
 	
 	var screen_size = DisplayServer.screen_get_size()
