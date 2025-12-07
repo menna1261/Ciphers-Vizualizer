@@ -38,8 +38,6 @@ func _create_viginere() ->void:
 			k = k+1
 			grid.add_child(new_cell)
 	_create_Array2D()
-	_encrypt()
-
 func _create_Array2D():
 	for i in 26 :
 		Array2D.append([])
@@ -100,9 +98,65 @@ func _encrypt()->void:
 			#print("===============================")
 
 
+func _decrypt()->void:
+	plain_text.text=""
+	var row_index
+	for i in key.text.length():
+		await get_tree().create_timer(0.5).timeout
+		row_index = Global.AlphabetMap[key.text[i]]-1
+		#halphabet.get_child(col_index).set("theme_override_colors/font_color", Color.YELLOW)
+		valphabet.get_child(row_index).set("theme_override_colors/font_color", Color.YELLOW)
+		
+		#animate cell coloring
+		var cipher_col
+		for k in 26 :
+			if Array2D[row_index][k].get_child(0).get_child(0).text == cipher_text.text[i]:
+				cipher_col = k
+				break
+			Array2D[row_index][k].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+			await get_tree().create_timer(0.1).timeout
+		
+		Array2D[row_index][cipher_col].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+		await get_tree().create_timer(0.1).timeout
+		
+		for k in range(row_index-1,-1,-1) :
+			Array2D[k][cipher_col].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+			await get_tree().create_timer(0.1).timeout
+		
+		halphabet.get_child(cipher_col).set("theme_override_colors/font_color", Color.YELLOW)
+		await get_tree().create_timer(0.5).timeout
+		# reset cells
+		for k in 26 :
+			Array2D[row_index][k].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			Array2D[k][cipher_col].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+		
+		await get_tree().create_timer(0.5).timeout
+		plain_text.text +=halphabet.get_child(cipher_col).text
+		halphabet.get_child(cipher_col).set("theme_override_colors/font_color", Color.WHITE)
+		valphabet.get_child(row_index).set("theme_override_colors/font_color", Color.WHITE)
+	
+
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/CipherScene.tscn")
 	DisplayServer.window_set_size(previous_size)
 	var screen_size = DisplayServer.screen_get_size()
 	var window_size = DisplayServer.window_get_size()
 	DisplayServer.window_set_position((screen_size - window_size) / 2)
+
+func _on_encrypt_pressed() -> void:
+	if Global.PlainText.is_empty() || Global.KEY.is_empty():
+		print("ERROR: PlainText or KEY is empty!")
+		return
+	$Encrypt.disabled = true
+	_encrypt()
+	$Decrypt.disabled = false
+
+func _on_decrypt_pressed() -> void:
+	if Global.KEY.is_empty() || cipher_text.text.is_empty():
+		print("ERROR: PlainText or KEY is empty!")
+		return
+	$Decrypt.disabled = true
+	$Encrypt.disabled = true
+	_decrypt()
+	$Decrypt.disabled = false
+	$Encrypt.disabled = false

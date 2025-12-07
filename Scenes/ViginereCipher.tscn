@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs8qjh5ne3u8l"]
+[gd_scene load_steps=7 format=3 uid="uid://bs8qjh5ne3u8l"]
 
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="1_4e8cu"]
 [ext_resource type="Script" uid="uid://b53hnf3xsmwt1" path="res://Scipts/viginere_cipher.gd" id="1_cl0gp"]
@@ -7,6 +7,14 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djo6w"]
 texture = ExtResource("1_4e8cu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4e8cu"]
+bg_color = Color(0.721569, 0.623529, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
 
 [node name="ViginereCipher" type="Control"]
 layout_mode = 3
@@ -132,4 +140,29 @@ offset_right = 284.0
 offset_bottom = 223.0
 theme_override_icons/icon = ExtResource("4_4e8cu")
 
+[node name="Encrypt" type="Button" parent="."]
+offset_left = 1475.0
+offset_top = 1532.0
+offset_right = 1890.0
+offset_bottom = 1623.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_cl0gp")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_4e8cu")
+text = "Encrypt"
+
+[node name="Decrypt" type="Button" parent="."]
+offset_left = 1956.0
+offset_top = 1533.0
+offset_right = 2371.0
+offset_bottom = 1624.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_cl0gp")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_4e8cu")
+disabled = true
+text = "Decrypt"
+
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Encrypt" to="." method="_on_encrypt_pressed"]
+[connection signal="pressed" from="Decrypt" to="." method="_on_decrypt_pressed"]
