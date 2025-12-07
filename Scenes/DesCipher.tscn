@@ -1,0 +1,387 @@
+[gd_scene load_steps=14 format=3 uid="uid://sn26tgns8dk0"]
+
+[ext_resource type="Script" uid="uid://ckvxlelaql81w" path="res://Scenes/des_cipher.gd" id="1_tsnyi"]
+[ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="2_kpxk5"]
+[ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="3_vjrx6"]
+[ext_resource type="Texture2D" uid="uid://boujyh5a7ok8s" path="res://Assets/des_rectangle.svg" id="4_vjrx6"]
+[ext_resource type="Texture2D" uid="uid://dpqx52q8ga8bt" path="res://Assets/go-back-arrow-3.png" id="4_w2tpq"]
+[ext_resource type="Texture2D" uid="uid://cugitpusfvxan" path="res://Assets/des_trapezoid.svg" id="5_w2tpq"]
+[ext_resource type="Texture2D" uid="uid://chjx7rvia3grw" path="res://Assets/des_xor.svg" id="6_4jb0b"]
+[ext_resource type="Texture2D" uid="uid://f7benl3ho1ip" path="res://Assets/short_arrow.svg" id="7_7cgvj"]
+[ext_resource type="Texture2D" uid="uid://b1hsmlngfebcu" path="res://Assets/long_line.svg" id="8_tsnyi"]
+[ext_resource type="Texture2D" uid="uid://c2gy08ov6w2t0" path="res://Assets/long_arrow.svg" id="9_tdpdg"]
+[ext_resource type="Texture2D" uid="uid://nuv616l24dfc" path="res://Assets/des_dashed_rect.svg" id="10_xc2kt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djo6w"]
+texture = ExtResource("2_kpxk5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsnyi"]
+bg_color = Color(0.721569, 0.623529, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[node name="DesCipher" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 108.0
+offset_right = 108.0
+script = ExtResource("1_tsnyi")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -122.0
+offset_right = 2399.0
+offset_bottom = 1820.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_djo6w")
+
+[node name="Viginere" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -221.5
+offset_top = 95.0
+offset_right = 221.5
+offset_bottom = 217.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+text = "DES Cipher"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 87.0
+offset_right = 185.0
+offset_bottom = 223.0
+theme_override_icons/icon = ExtResource("4_w2tpq")
+
+[node name="Li" type="Sprite2D" parent="."]
+position = Vector2(452, 593)
+scale = Vector2(2.40625, 2.40625)
+texture = ExtResource("4_vjrx6")
+
+[node name="Label" type="Label" parent="Li"]
+z_index = 2
+offset_left = -84.0
+offset_top = -12.0
+offset_right = 83.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ri" type="Sprite2D" parent="."]
+position = Vector2(986, 595)
+scale = Vector2(2.40625, 2.40625)
+texture = ExtResource("4_vjrx6")
+
+[node name="Label" type="Label" parent="Ri"]
+z_index = 2
+offset_left = -84.0
+offset_top = -12.0
+offset_right = 83.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Li1+1" type="Sprite2D" parent="."]
+position = Vector2(456, 1570)
+scale = Vector2(2.40625, 2.40625)
+texture = ExtResource("4_vjrx6")
+
+[node name="Label" type="Label" parent="Li1+1"]
+z_index = 2
+offset_left = -84.0
+offset_top = -12.0
+offset_right = 83.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ri1+1" type="Sprite2D" parent="."]
+position = Vector2(986, 1569)
+scale = Vector2(2.40625, 2.40625)
+texture = ExtResource("4_vjrx6")
+
+[node name="Label" type="Label" parent="Ri1+1"]
+z_index = 2
+offset_left = -84.0
+offset_top = -12.0
+offset_right = 83.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesTrapezoid" type="Sprite2D" parent="."]
+position = Vector2(965, 1082)
+rotation = -3.13317
+scale = Vector2(1.46419, 1.57475)
+texture = ExtResource("5_w2tpq")
+
+[node name="Label" type="Label" parent="DesTrapezoid"]
+offset_left = -88.0
+offset_top = -9.0
+offset_right = 79.0
+offset_bottom = 22.0
+rotation = 3.1362
+pivot_offset = Vector2(86.5522, 12.2816)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 20
+text = "8 S Boxes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesTrapezoid2" type="Sprite2D" parent="."]
+position = Vector2(961, 848)
+scale = Vector2(1.59375, 1.59375)
+texture = ExtResource("5_w2tpq")
+
+[node name="Label" type="Label" parent="DesTrapezoid2"]
+offset_left = -90.0
+offset_top = -16.0
+offset_right = 90.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+text = "Expantion Permutation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesXor" type="Sprite2D" parent="."]
+position = Vector2(968, 959)
+scale = Vector2(1.28846, 1.23077)
+texture = ExtResource("6_4jb0b")
+
+[node name="DesXor2" type="Sprite2D" parent="."]
+position = Vector2(966, 1458)
+scale = Vector2(1.23077, 1.23077)
+texture = ExtResource("6_4jb0b")
+
+[node name="Round" type="Label" parent="."]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 367.0
+offset_right = 627.0
+offset_bottom = 469.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 100
+text = "Round :"
+
+[node name="RoundNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 692.0
+offset_top = 365.0
+offset_right = 950.0
+offset_bottom = 467.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 100
+
+[node name="ShortArrow" type="Sprite2D" parent="."]
+position = Vector2(972, 729)
+scale = Vector2(3.89474, 4.63414)
+texture = ExtResource("7_7cgvj")
+
+[node name="ShortArrow2" type="Sprite2D" parent="."]
+position = Vector2(969, 900)
+scale = Vector2(2.02632, 1.30488)
+texture = ExtResource("7_7cgvj")
+
+[node name="ShortArrow3" type="Sprite2D" parent="."]
+position = Vector2(969, 1023)
+scale = Vector2(1.86842, 1.5)
+texture = ExtResource("7_7cgvj")
+
+[node name="ShortArrow4" type="Sprite2D" parent="."]
+position = Vector2(967, 1132)
+scale = Vector2(1.65789, 1.23171)
+texture = ExtResource("7_7cgvj")
+
+[node name="ShortArrow5" type="Sprite2D" parent="."]
+position = Vector2(968, 1327.12)
+scale = Vector2(3.21053, 5.21342)
+texture = ExtResource("7_7cgvj")
+
+[node name="ShortArrow6" type="Sprite2D" parent="."]
+position = Vector2(966, 1508)
+scale = Vector2(1.9079, 1.18421)
+texture = ExtResource("7_7cgvj")
+
+[node name="ShortArrow7" type="Sprite2D" parent="."]
+position = Vector2(1227.4, 960.952)
+rotation = 1.56906
+scale = Vector2(3.87851, 11.4069)
+texture = ExtResource("7_7cgvj")
+
+[node name="LongLine" type="Sprite2D" parent="."]
+position = Vector2(683, 1050.12)
+scale = Vector2(3.40132, 2.90505)
+texture = ExtResource("8_tsnyi")
+
+[node name="LongArrow" type="Sprite2D" parent="."]
+position = Vector2(716.5, 1104.5)
+scale = Vector2(3.54225, 2.88621)
+texture = ExtResource("9_tdpdg")
+
+[node name="PBox" type="Sprite2D" parent="."]
+position = Vector2(976, 1190)
+scale = Vector2(1.9304, 1.82813)
+texture = ExtResource("4_vjrx6")
+
+[node name="Label" type="Label" parent="PBox"]
+offset_left = -84.0
+offset_top = -12.0
+offset_right = 83.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 20
+text = "P Box"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DesDashedRect" type="Sprite2D" parent="."]
+position = Vector2(963, 1070)
+scale = Vector2(2.87841, 2.79442)
+texture = ExtResource("10_xc2kt")
+
+[node name="RoundKey" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1263.0
+offset_top = 880.0
+offset_right = 1550.0
+offset_bottom = 931.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundKey2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1263.0
+offset_top = 820.0
+offset_right = 1550.0
+offset_bottom = 882.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+text = "Key"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CipherText" type="Label" parent="."]
+offset_left = 1480.0
+offset_top = 1288.0
+offset_right = 1764.0
+offset_bottom = 1350.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+text = "Cipher Text :"
+
+[node name="PlainText" type="Label" parent="."]
+offset_left = 1482.0
+offset_top = 1181.0
+offset_right = 1742.0
+offset_bottom = 1243.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+text = "Plain Text :"
+
+[node name="CipherText2" type="Label" parent="."]
+offset_left = 1774.0
+offset_top = 1286.0
+offset_right = 2189.0
+offset_bottom = 1348.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+vertical_alignment = 1
+
+[node name="PlainText2" type="Label" parent="."]
+offset_left = 1773.0
+offset_top = 1179.0
+offset_right = 2182.0
+offset_bottom = 1241.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+vertical_alignment = 1
+
+[node name="CurrentBlock" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1186.0
+offset_top = 371.0
+offset_right = 1765.0
+offset_bottom = 473.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 100
+text = "Current Block :"
+
+[node name="CurrentBlock2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1807.0
+offset_top = 381.0
+offset_right = 2112.0
+offset_bottom = 462.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Key" type="Label" parent="."]
+offset_left = 1486.0
+offset_top = 1082.0
+offset_right = 1590.0
+offset_bottom = 1144.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+text = "Key :"
+
+[node name="Key2" type="Label" parent="."]
+offset_left = 1617.0
+offset_top = 1084.0
+offset_right = 2083.0
+offset_bottom = 1146.0
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+vertical_alignment = 1
+
+[node name="Encrypt" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1411.0
+offset_top = 1532.0
+offset_right = 1826.0
+offset_bottom = 1623.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tsnyi")
+text = "Encrypt"
+
+[node name="Decrypt" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1892.0
+offset_top = 1533.0
+offset_right = 2307.0
+offset_bottom = 1624.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vjrx6")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tsnyi")
+disabled = true
+text = "Decrypt"
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Encrypt" to="." method="_on_encrypt_pressed"]
+[connection signal="pressed" from="Decrypt" to="." method="_on_decrypt_pressed"]

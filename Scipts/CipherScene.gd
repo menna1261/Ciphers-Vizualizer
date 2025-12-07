@@ -117,7 +117,11 @@ func _on_viginere_cipher_pressed() -> void:
 func _create_viginere() ->void:
 	get_tree().change_scene_to_file("res://Scenes/ViginereCipher.tscn")
 
+func _create_des() ->void:
+	get_tree().change_scene_to_file("res://Scenes/DesCipher.tscn")
+
 func _on_des_cipher_pressed() -> void:
 	_set_cipher_name("DES")
 	cipher_menu.visible = false
 	_get_input()
+	_create_des()
