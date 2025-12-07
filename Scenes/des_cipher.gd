@@ -242,7 +242,7 @@ func _modulate_sprites(sprite_list : Array , reset : bool , swap = false , swap_
 	if swap :
 		sprite_list[0].modulate = Color.YELLOW
 		sprite_list[1].modulate = Color.CORAL
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(1).timeout
 	elif swap_reset : 
 		sprite_list[0].modulate = Color.WHITE
 		sprite_list[1].modulate = Color.WHITE
@@ -253,7 +253,7 @@ func _modulate_sprites(sprite_list : Array , reset : bool , swap = false , swap_
 			else :
 				sprite.modulate = Color("#b89ffd")
 		if !reset :
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.5).timeout
 	
 		 
 # Encrypt/Decrypt function
