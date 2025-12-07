@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs8qjh5ne3u8l"]
 
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="1_4e8cu"]
-[ext_resource type="Script" uid="uid://b816n4nw4ogsj" path="res://Scenes/viginere_cipher.gd" id="1_cl0gp"]
+[ext_resource type="Script" uid="uid://b53hnf3xsmwt1" path="res://Scipts/viginere_cipher.gd" id="1_cl0gp"]
 [ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="2_cl0gp"]
 [ext_resource type="Texture2D" uid="uid://dpqx52q8ga8bt" path="res://Assets/go-back-arrow-3.png" id="4_4e8cu"]
 

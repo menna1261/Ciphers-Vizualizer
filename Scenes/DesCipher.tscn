@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://sn26tgns8dk0"]
 
-[ext_resource type="Script" uid="uid://ckvxlelaql81w" path="res://Scenes/des_cipher.gd" id="1_tsnyi"]
+[ext_resource type="Script" uid="uid://ckvxlelaql81w" path="res://Scipts/des_cipher.gd" id="1_tsnyi"]
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="2_kpxk5"]
 [ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="3_vjrx6"]
 [ext_resource type="Texture2D" uid="uid://boujyh5a7ok8s" path="res://Assets/des_rectangle.svg" id="4_vjrx6"]
@@ -283,6 +283,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CipherText" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1480.0
 offset_top = 1288.0
 offset_right = 1764.0
@@ -292,6 +293,7 @@ theme_override_font_sizes/font_size = 60
 text = "Cipher Text :"
 
 [node name="PlainText" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1482.0
 offset_top = 1181.0
 offset_right = 1742.0
@@ -301,6 +303,7 @@ theme_override_font_sizes/font_size = 60
 text = "Plain Text :"
 
 [node name="CipherText2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1774.0
 offset_top = 1286.0
 offset_right = 2189.0
@@ -310,6 +313,7 @@ theme_override_font_sizes/font_size = 60
 vertical_alignment = 1
 
 [node name="PlainText2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1773.0
 offset_top = 1179.0
 offset_right = 2182.0
@@ -340,6 +344,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Key" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1486.0
 offset_top = 1082.0
 offset_right = 1590.0
@@ -349,6 +354,7 @@ theme_override_font_sizes/font_size = 60
 text = "Key :"
 
 [node name="Key2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1617.0
 offset_top = 1084.0
 offset_right = 2083.0
