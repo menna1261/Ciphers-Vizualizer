@@ -13,6 +13,8 @@ extends Control
 @export var width = 5
 @export var height = 5
 
+var alphabet_list = []
+var plainText_list =[]
 var defaultMenuName = ""
 var end = 0
 
@@ -21,7 +23,13 @@ func _ready():
 	defaultMenuName = "Choose Cipher"
 	for i in range(255):
 		Global.arr.append(0)
+	Global.keyArr.clear()
 	
+	for c in Global.Alphabet:
+		if c == "j":  # merge i/j
+			continue
+		alphabet_list.append(c)
+
 
 	
 func _on_choose_cipher_pressed():
@@ -42,35 +50,25 @@ func _on_reset_pressed():
 	choose_cipher.text = defaultMenuName
 	
 func _Create_PlayFair_Matrix():
+	var matrix_letters = []
 	_remove_KEY_duplicates()
-	for i in 25:
-		var new_cell = cell.instantiate()
-		if(Global.KEY != ""):
-			if(i<Global.keyArr.size()):
-				new_cell.get_child(0).get_child(0).text = Global.keyArr[i]
-				new_cell.get_child(0).get_child(0).set("theme_override_colors/font_color", Color.YELLOW)
-			else:
-				#print("Array size : ",Global.keyArr.size(),"i = ",i,"Alphabet : ",Global.Alphabet[i],"  uni code of alphabet : ", Global.Alphabet.unicode_at(i))
-				if Global.arr[ Global.Alphabet.unicode_at(i-Global.keyArr.size()) ] == 0:
-					new_cell.get_child(0).get_child(0).text = Global.Alphabet[i-Global.keyArr.size()]
-				else:
-					continue
-			grid_container.add_child(new_cell)
-		end = i
-		print("End = " , end)
-			
-	for i in range(25 - Global.keyArr.size(), 25):
-		var new_cell = cell.instantiate()
-		if i == 23:
-			new_cell.get_child(0).get_child(0).text = "99"
-			break
-		if Global.arr[ Global.Alphabet.unicode_at(i) ] == 0:
-			new_cell.get_child(0).get_child(0).text = Global.Alphabet[i]
-		else:
-			continue
-		grid_container.add_child(new_cell)
+	for c in Global.keyArr:
+		matrix_letters.append(c)
+		
+
+	# Add remaining alphabet letters
+	for c in alphabet_list:
+		if c not in Global.keyArr:
+			matrix_letters.append(c)
 	
-	var lastCell = cell.instantiate()
+	for i in range(25):
+		var new_cell = cell.instantiate()
+		new_cell.get_child(0).get_child(0).text = matrix_letters[i]
+		if(i < Global.keyArr.size()):
+			new_cell.get_child(0).get_child(0).set("theme_override_colors/font_color", Color.YELLOW)
+		
+		grid_container.add_child(new_cell)
+
 	#lastCell.get_child(0).get_child(0).text = Global.Alphabet[24] + "/" + Global.Alphabet[25]
 	_create_Array2D()
 	
@@ -89,7 +87,25 @@ func _get_input():
 	Global.PlainText = text_entry.text
 	Global.KEY = key_entry.text
 	_remove_KEY_duplicates()
-	print("plain text : " , Global.PlainText)
+	_split_plain_text()
+	
+
+func _split_plain_text():
+	for i in range(Global.PlainText.length()):
+		var letter = Global.PlainText[i]
+		if letter == " ":
+			continue
+		if i<Global.PlainText.length() -1 and letter == Global.PlainText[i+1]:
+			plainText_list.append (Global.PlainText[i])
+			plainText_list.append("x")
+			i+=1
+		else :
+			plainText_list.append (Global.PlainText[i])
+	
+	print("Plain text : ", plainText_list)
+
+func _get_playfair_output():
+	pass
 
 func _on_play_fair_pressed():
 	cipher_menu.visible = !cipher_menu.visible
