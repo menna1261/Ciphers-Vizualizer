@@ -7,12 +7,14 @@ extends Control
 @onready var cipher_text = $CipherText
 @onready var grid_container = $GridContainer
 @onready var cell = preload("res://Scenes/cell.tscn")
+@onready var splitted_text = $Splitted_Text
 
 
 @export var Array2D = []
 @export var width = 5
 @export var height = 5
 
+var Cipher_res = ""
 var alphabet_list = []
 var plainText_list =[]
 var defaultMenuName = ""
@@ -71,6 +73,11 @@ func _Create_PlayFair_Matrix():
 
 	#lastCell.get_child(0).get_child(0).text = Global.Alphabet[24] + "/" + Global.Alphabet[25]
 	_create_Array2D()
+	var i =0
+	while(i < plainText_list.size() - 1):
+		_get_playfair_output(plainText_list[i],plainText_list[i+1])
+		i+=2
+	cipher_text.text = Cipher_res
 	
 func _create_Array2D():
 	for i in 5 :
@@ -101,12 +108,58 @@ func _split_plain_text():
 			i+=1
 		else :
 			plainText_list.append (Global.PlainText[i])
+
+	var i = 0
+	while (i < plainText_list.size()):
+		splitted_text.text += plainText_list[i]
+		if i < plainText_list.size()-1:
+			splitted_text.text += plainText_list[i+1]
+		splitted_text.text+= " "
+		i+=2
 	
-	print("Plain text : ", plainText_list)
 
-func _get_playfair_output():
-	pass
-
+func _get_playfair_output(letter1:String , letter2:String):
+	var x1 =-1 
+	var x2 = -1
+	var y1 = -1
+	var y2 = -1
+	
+	for i in 5:
+		for j in 5:
+			var cell_text = Array2D[i][j].get_child(0).get_child(0).text
+			if cell_text == letter1:
+				x1 = i 
+				y1 = j 
+			elif cell_text ==letter2:
+				x2 = i 
+				y2 = j 
+	
+	if x1 != -1 and x2!=-1 and y1 != -1 and y2 != -1:
+		if(x1 != x2 and y1!=y2):
+			var res1 = Array2D[x1][y2].get_child(0).get_child(0).text
+			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text				
+			Cipher_res+=res1
+			Cipher_res+=res2
+			
+		
+		#Same row
+		elif (x1 == x2):
+			var res1 = Array2D[x1][(y1+1)%5].get_child(0).get_child(0).text
+			var res2 = Array2D[x2][(y2+1)%5].get_child(0).get_child(0).text
+			Cipher_res+=res1
+			Cipher_res+=res2			
+		
+		#Same column
+		elif (y1==y2):
+			var res1 = Array2D[(x1+1)%5][y1].get_child(0).get_child(0).text
+			var res2 = Array2D[(x2+1)%5][y2].get_child(0).get_child(0).text
+			Cipher_res+=res1
+			Cipher_res+=res2
+		
+	print("Cipher text : ", Cipher_res)			
+	
+	
+	
 func _on_play_fair_pressed():
 	cipher_menu.visible = !cipher_menu.visible
 	_set_cipher_name("Play Fair")
@@ -115,6 +168,8 @@ func _on_play_fair_pressed():
 
 func _remove_KEY_duplicates():
 	for i in Global.KEY.length():
+		if(Global.KEY[i] == " "):
+			continue
 		var freq = Global.arr[Global.KEY.unicode_at(i)]
 		if(freq == 0):		
 			Global.arr[Global.KEY.unicode_at(i)] +=1
