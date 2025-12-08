@@ -7,6 +7,8 @@ extends Control
 @onready var cipher_text = $CipherText
 @onready var grid_container = $GridContainer
 @onready var cell = preload("res://Scenes/cell.tscn")
+const highlight_style = preload("res://Assets/new_style_box_flat.tres")
+const found_style = preload("res://Assets/green_style_box_flat.tres")
 @onready var splitted_text = $Splitted_Text
 
 
@@ -16,6 +18,7 @@ extends Control
 
 var Cipher_res = ""
 var alphabet_list = []
+var lines_to_draw = []
 var plainText_list =[]
 var defaultMenuName = ""
 var end = 0
@@ -76,8 +79,11 @@ func _Create_PlayFair_Matrix():
 	var i =0
 	while(i < plainText_list.size() - 1):
 		_get_playfair_output(plainText_list[i],plainText_list[i+1])
+	#	await get_tree().create_timer(2.0).timeout
 		i+=2
 	cipher_text.text = Cipher_res
+	print("========================Final cipher : ", cipher_text.text)
+	
 	
 func _create_Array2D():
 	for i in 5 :
@@ -135,13 +141,24 @@ func _get_playfair_output(letter1:String , letter2:String):
 				y2 = j 
 	
 	if x1 != -1 and x2!=-1 and y1 != -1 and y2 != -1:
+	#	Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+	#	Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+	#	await get_tree().create_timer(2.0).timeout
+	
+	#	Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+	#	Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
 		if(x1 != x2 and y1!=y2):
 			var res1 = Array2D[x1][y2].get_child(0).get_child(0).text
-			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text				
+			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text	
+			_create_rectangle(x1, y1, x2 , y2 , x1 , y2 , x2 , y1)
+	#		Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)		
+	#		Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)	
+			await get_tree().create_timer(2.0).timeout	
 			Cipher_res+=res1
 			Cipher_res+=res2
-			
-		
+	#		Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+	#		Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+
 		#Same row
 		elif (x1 == x2):
 			var res1 = Array2D[x1][(y1+1)%5].get_child(0).get_child(0).text
@@ -159,6 +176,31 @@ func _get_playfair_output(letter1:String , letter2:String):
 	print("Cipher text : ", Cipher_res)			
 	
 	
+func _create_rectangle(L1x, L1y, L2x, L2y, res1x, res1y, res2x, res2y):
+	print("inside rectangle ")
+	var DL = $DrawingLayer
+
+	var A = DL.to_local(Array2D[L1x][L1y].get_child(0).get_global_position())
+	var B = DL.to_local(Array2D[res1x][res1y].get_child(0).get_global_position())
+	var C = DL.to_local(Array2D[L2x][L2y].get_child(0).get_global_position())
+	var D = DL.to_local(Array2D[res2x][res2y].get_child(0).get_global_position())
+
+	print("A:", A, " B:", B, " C:", C, " D:", D)
+
+
+
+	# clear previous lines
+	DL.lines_to_draw.clear()
+
+
+	# Add rectangle edges in order
+	DL.lines_to_draw.append({ "a": A, "b": B })
+	DL.lines_to_draw.append({ "a": B, "b": C})
+	DL.lines_to_draw.append({ "a": C, "b": D })
+	DL.lines_to_draw.append({ "a": D, "b": A })
+
+	DL.queue_redraw()
+
 	
 func _on_play_fair_pressed():
 	cipher_menu.visible = !cipher_menu.visible

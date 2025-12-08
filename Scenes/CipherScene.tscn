@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://netk700n3adc"]
+[gd_scene load_steps=11 format=3 uid="uid://netk700n3adc"]
 
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="1_fnd0r"]
 [ext_resource type="Script" path="res://Scipts/CipherScene.gd" id="1_pefqs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3su3ho7e2c85" path="res://Assets/hover.png" id="2_lpgij"]
 [ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="3_yevfl"]
 [ext_resource type="Texture2D" uid="uid://cv7in5m1vo1td" path="res://Assets/refresh 2.png" id="6_m3jry"]
+[ext_resource type="Script" path="res://Scenes/DrawingLayer.gd" id="7_4haok"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22qlw"]
 texture = ExtResource("1_fnd0r")
@@ -27,9 +28,13 @@ script = ExtResource("1_pefqs")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.009
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 10.305
+offset_right = 19.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_22qlw")
@@ -202,7 +207,6 @@ placeholder_text = "Enter Key"
 scroll_smooth = true
 
 [node name="CipherLabel" type="Label" parent="."]
-layout_mode = 0
 offset_left = 90.0
 offset_top = 378.0
 offset_right = 352.0
@@ -213,7 +217,6 @@ theme_override_font_sizes/font_size = 35
 text = "Cipher Text"
 
 [node name="CipherText" type="TextEdit" parent="."]
-layout_mode = 0
 offset_left = 89.0
 offset_top = 419.0
 offset_right = 509.0
@@ -239,7 +242,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_wgunu")
 icon = ExtResource("6_m3jry")
 
 [node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
 offset_left = 634.0
 offset_top = 208.0
 offset_right = 674.0
@@ -249,7 +251,6 @@ theme_override_constants/v_separation = 63
 columns = 5
 
 [node name="Splitted_Text" type="Label" parent="."]
-layout_mode = 0
 offset_left = 218.0
 offset_top = 538.0
 offset_right = 650.0
@@ -258,7 +259,6 @@ theme_override_fonts/font = ExtResource("3_yevfl")
 theme_override_font_sizes/font_size = 40
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_left = 90.0
 offset_top = 540.0
 offset_right = 145.0
@@ -267,6 +267,10 @@ theme_override_colors/font_color = Color(0, 0.745098, 0.721569, 1)
 theme_override_fonts/font = ExtResource("3_yevfl")
 theme_override_font_sizes/font_size = 40
 text = "Text :"
+
+[node name="DrawingLayer" type="Node2D" parent="."]
+z_index = 999
+script = ExtResource("7_4haok")
 
 [connection signal="pressed" from="Panel/ChooseCipher" to="." method="_on_choose_cipher_pressed"]
 [connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/Ceaser" to="." method="_on_ceaser_cipher_pressed"]

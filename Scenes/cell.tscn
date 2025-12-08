@@ -13,9 +13,11 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_j1os3")
 
 [node name="Label" type="Label" parent="MatrixCell"]
-offset_left = -17.1429
-offset_top = -25.7144
-offset_right = 22.8571
-offset_bottom = 36.2856
+offset_left = -49.0
+offset_top = -43.0
+offset_right = 49.0
+offset_bottom = 43.0
 theme_override_fonts/font = ExtResource("2_iojkp")
 theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
