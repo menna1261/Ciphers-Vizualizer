@@ -53,6 +53,14 @@ func _on_reset_pressed():
 	key_entry.clear()
 	cipher_text.clear()
 	choose_cipher.text = defaultMenuName
+	var grid_children = grid_container.get_children()
+	for child in grid_children:
+		child.queue_free()
+	Array2D.clear()
+	Global.keyArr.clear()
+	Global.KEY = ""
+	Global.PlainText = ""
+	Global.arr.clear()
 	
 func _Create_PlayFair_Matrix():
 	var matrix_letters = []
@@ -141,10 +149,10 @@ func _get_playfair_output(letter1:String , letter2:String):
 				y2 = j 
 	
 	if x1 != -1 and x2!=-1 and y1 != -1 and y2 != -1:
-		Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
-		Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
-		if(x1 != x2 and y1!=y2):
 
+		if(x1 != x2 and y1!=y2):
+			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
 			var res1 = Array2D[x1][y2].get_child(0).get_child(0).text
 			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text
 
@@ -170,14 +178,20 @@ func _get_playfair_output(letter1:String , letter2:String):
 
 		#Same row
 		elif (x1 == x2):
+			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+			await get_tree().create_timer(1.0).timeout
+			Array2D[x1][(y1+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+			await get_tree().create_timer(1.0).timeout
+			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+			await get_tree().create_timer(1.0).timeout
+			Array2D[x2][(y2+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)	
+			
 			
 			var res1 = Array2D[x1][(y1+1)%5].get_child(0).get_child(0).text
 			var res2 = Array2D[x2][(y2+1)%5].get_child(0).get_child(0).text
 			await get_tree().create_timer(1.0).timeout
-			Array2D[x1][(y1+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
-			Array2D[x2][(y2+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
-
-			await get_tree().create_timer(1.0).timeout
+			
+			
 			cipher_text.text+=res1
 			cipher_text.text+=res2	
 			Array2D[x1][(y1+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", StyleBoxEmpty.new())
@@ -185,15 +199,18 @@ func _get_playfair_output(letter1:String , letter2:String):
 			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
 			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
 			await get_tree().create_timer(1.0).timeout		
+			
 		#Same column
 		elif (y1==y2):
+			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+			await get_tree().create_timer(1.0).timeout
+			Array2D[(x1+1)%5][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+			await get_tree().create_timer(1.0).timeout
+			Array2D[(x2+1)%5][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)			
+			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
 			var res1 = Array2D[(x1+1)%5][y1].get_child(0).get_child(0).text
 			var res2 = Array2D[(x2+1)%5][y2].get_child(0).get_child(0).text
 			await get_tree().create_timer(1.0).timeout
-			Array2D[(x1+1)%5][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
-			Array2D[(x2+1)%5][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
-
-			await get_tree().create_timer(1.0).timeout		
 			cipher_text.text+=res1
 			cipher_text.text+=res2	
 			Array2D[(x1+1)%5][y1].get_child(0).get_child(0).set("theme_override_styles/normal", StyleBoxEmpty.new())
@@ -215,13 +232,8 @@ func _create_rectangle(L1x, L1y, L2x, L2y, res1x, res1y, res2x, res2y):
 	var D = DL.to_local(Array2D[res2x][res2y].get_child(0).get_global_position())
 
 	print("A:", A, " B:", B, " C:", C, " D:", D)
-
-
-
 	# clear previous lines
 	DL.lines_to_draw.clear()
-
-
 	# Add rectangle edges in order
 	DL.lines_to_draw.append({ "a": A, "b": B })
 	DL.lines_to_draw.append({ "a": B, "b": C})
