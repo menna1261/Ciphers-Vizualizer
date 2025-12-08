@@ -26,6 +26,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_pefqs")
 
+[node name="DrawingLayer" type="Node2D" parent="."]
+z_index = 999
+script = ExtResource("7_4haok")
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -267,10 +271,6 @@ theme_override_colors/font_color = Color(0, 0.745098, 0.721569, 1)
 theme_override_fonts/font = ExtResource("3_yevfl")
 theme_override_font_sizes/font_size = 40
 text = "Text :"
-
-[node name="DrawingLayer" type="Node2D" parent="."]
-z_index = 999
-script = ExtResource("7_4haok")
 
 [connection signal="pressed" from="Panel/ChooseCipher" to="." method="_on_choose_cipher_pressed"]
 [connection signal="pressed" from="Panel/ChooseCipher/CipherMenu/Ceaser" to="." method="_on_ceaser_cipher_pressed"]

@@ -79,9 +79,9 @@ func _Create_PlayFair_Matrix():
 	var i =0
 	while(i < plainText_list.size() - 1):
 		_get_playfair_output(plainText_list[i],plainText_list[i+1])
-	#	await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(4.0).timeout
 		i+=2
-	cipher_text.text = Cipher_res
+	#cipher_text.text = Cipher_res
 	print("========================Final cipher : ", cipher_text.text)
 	
 	
@@ -141,40 +141,69 @@ func _get_playfair_output(letter1:String , letter2:String):
 				y2 = j 
 	
 	if x1 != -1 and x2!=-1 and y1 != -1 and y2 != -1:
-	#	Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
-	#	Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
-	#	await get_tree().create_timer(2.0).timeout
-	
-	#	Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
-	#	Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+		Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
+		Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal", highlight_style)
 		if(x1 != x2 and y1!=y2):
+
 			var res1 = Array2D[x1][y2].get_child(0).get_child(0).text
-			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text	
+			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text
+
+			await get_tree().create_timer(1.0).timeout	
+			cipher_text.text +=res1
+			cipher_text.text+=res2
 			_create_rectangle(x1, y1, x2 , y2 , x1 , y2 , x2 , y1)
-	#		Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)		
-	#		Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)	
-			await get_tree().create_timer(2.0).timeout	
-			Cipher_res+=res1
-			Cipher_res+=res2
-	#		Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
-	#		Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			await get_tree().create_timer(1.0).timeout
+			Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)		
+			Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+			await get_tree().create_timer(0.3).timeout	
+			$DrawingLayer.hide()
+			$DrawingLayer.lines_to_draw.clear()
+			
+
+			Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			await get_tree().create_timer(0.2).timeout
+			$DrawingLayer.show()
+			
 
 		#Same row
 		elif (x1 == x2):
+			
 			var res1 = Array2D[x1][(y1+1)%5].get_child(0).get_child(0).text
 			var res2 = Array2D[x2][(y2+1)%5].get_child(0).get_child(0).text
-			Cipher_res+=res1
-			Cipher_res+=res2			
-		
+			await get_tree().create_timer(1.0).timeout
+			Array2D[x1][(y1+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+			Array2D[x2][(y2+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+
+			await get_tree().create_timer(1.0).timeout
+			cipher_text.text+=res1
+			cipher_text.text+=res2	
+			Array2D[x1][(y1+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", StyleBoxEmpty.new())
+			Array2D[x2][(y2+1)%5].get_child(0).get_child(0).set("theme_override_styles/normal", StyleBoxEmpty.new())
+			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			await get_tree().create_timer(1.0).timeout		
 		#Same column
 		elif (y1==y2):
 			var res1 = Array2D[(x1+1)%5][y1].get_child(0).get_child(0).text
 			var res2 = Array2D[(x2+1)%5][y2].get_child(0).get_child(0).text
-			Cipher_res+=res1
-			Cipher_res+=res2
+			await get_tree().create_timer(1.0).timeout
+			Array2D[(x1+1)%5][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+			Array2D[(x2+1)%5][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+
+			await get_tree().create_timer(1.0).timeout		
+			cipher_text.text+=res1
+			cipher_text.text+=res2	
+			Array2D[(x1+1)%5][y1].get_child(0).get_child(0).set("theme_override_styles/normal", StyleBoxEmpty.new())
+			Array2D[(x2+1)%5][y2].get_child(0).get_child(0).set("theme_override_styles/normal", StyleBoxEmpty.new())
+			Array2D[x2][y2].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			Array2D[x1][y1].get_child(0).get_child(0).set("theme_override_styles/normal",StyleBoxEmpty.new())
+			await get_tree().create_timer(1.0).timeout		
 		
 	print("Cipher text : ", Cipher_res)			
-	
+	#await get_tree().create_timer(2.0).timeout	
 	
 func _create_rectangle(L1x, L1y, L2x, L2y, res1x, res1y, res2x, res2y):
 	print("inside rectangle ")
