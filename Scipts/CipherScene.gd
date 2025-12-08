@@ -43,15 +43,13 @@ func _on_choose_cipher_pressed():
 func _set_cipher_name(CipherName : String):
 	choose_cipher.text = CipherName
 	
-func _on_ceaser_cipher_pressed():
-	_set_cipher_name("Ceaser")
-	cipher_menu.visible = false
-	_get_input()
 	
 func _on_reset_pressed():
 	text_entry.clear()
 	key_entry.clear()
-	cipher_text.clear()
+	cipher_text.text = ""
+	splitted_text.text = ""
+	plainText_list.clear()
 	choose_cipher.text = defaultMenuName
 	var grid_children = grid_container.get_children()
 	for child in grid_children:
@@ -64,7 +62,6 @@ func _on_reset_pressed():
 	
 func _Create_PlayFair_Matrix():
 	var matrix_letters = []
-	_remove_KEY_duplicates()
 	for c in Global.keyArr:
 		matrix_letters.append(c)
 		
@@ -85,7 +82,7 @@ func _Create_PlayFair_Matrix():
 	#lastCell.get_child(0).get_child(0).text = Global.Alphabet[24] + "/" + Global.Alphabet[25]
 	_create_Array2D()
 	var i =0
-	while(i < plainText_list.size() - 1):
+	while(i < plainText_list.size()-1):
 		_get_playfair_output(plainText_list[i],plainText_list[i+1])
 		await get_tree().create_timer(4.0).timeout
 		i+=2
@@ -107,8 +104,6 @@ func _print():
 func _get_input():
 	Global.PlainText = text_entry.text
 	Global.KEY = key_entry.text
-	_remove_KEY_duplicates()
-	_split_plain_text()
 	
 
 func _split_plain_text():
@@ -122,7 +117,9 @@ func _split_plain_text():
 			i+=1
 		else :
 			plainText_list.append (Global.PlainText[i])
-
+	
+	if plainText_list.size()%2 ==1:
+		plainText_list.append("x")
 	var i = 0
 	while (i < plainText_list.size()):
 		splitted_text.text += plainText_list[i]
@@ -130,7 +127,7 @@ func _split_plain_text():
 			splitted_text.text += plainText_list[i+1]
 		splitted_text.text+= " "
 		i+=2
-	
+	print(splitted_text.text)
 
 func _get_playfair_output(letter1:String , letter2:String):
 	var x1 =-1 
@@ -157,12 +154,12 @@ func _get_playfair_output(letter1:String , letter2:String):
 			var res2 = Array2D[x2][y1].get_child(0).get_child(0).text
 
 			await get_tree().create_timer(1.0).timeout	
-			cipher_text.text +=res1
-			cipher_text.text+=res2
 			_create_rectangle(x1, y1, x2 , y2 , x1 , y2 , x2 , y1)
 			await get_tree().create_timer(1.0).timeout
 			Array2D[x1][y2].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)		
 			Array2D[x2][y1].get_child(0).get_child(0).set("theme_override_styles/normal", found_style)
+			cipher_text.text +=res1
+			cipher_text.text+=res2
 			await get_tree().create_timer(0.3).timeout	
 			$DrawingLayer.hide()
 			$DrawingLayer.lines_to_draw.clear()
@@ -247,9 +244,15 @@ func _on_play_fair_pressed():
 	cipher_menu.visible = !cipher_menu.visible
 	_set_cipher_name("Play Fair")
 	_get_input()
+	_remove_KEY_duplicates()
+	_split_plain_text()
 	_Create_PlayFair_Matrix()
 
 func _remove_KEY_duplicates():
+	if Global.arr.size() == 0 :
+		for i in range(255):
+			Global.arr.append(0)
+		
 	for i in Global.KEY.length():
 		if(Global.KEY[i] == " "):
 			continue
