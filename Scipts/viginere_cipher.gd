@@ -67,7 +67,8 @@ func _encrypt()->void:
 	for i in key.text.length():
 		await get_tree().create_timer(0.5).timeout
 		col_index = Global.AlphabetMap[key.text[i]]-1
-		row_index = Global.AlphabetMap[plain_text.text[i]]-1
+		if plain_text.text[i] != " ":
+			row_index = Global.AlphabetMap[plain_text.text[i]]-1
 		halphabet.get_child(col_index).set("theme_override_colors/font_color", Color.YELLOW)
 		valphabet.get_child(row_index).set("theme_override_colors/font_color", Color.YELLOW)
 		#animate cell coloring

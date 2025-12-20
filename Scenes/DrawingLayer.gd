@@ -6,6 +6,4 @@ func _draw():
 
 	print("==========Executing+++++++++")
 	for L in lines_to_draw:
-		draw_line(L.a, L.b, Color.DARK_RED, 5.0)
-
-
+		draw_line(L.a, L.b, Color.RED, 8.0)

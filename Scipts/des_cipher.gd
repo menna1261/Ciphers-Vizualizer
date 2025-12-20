@@ -301,7 +301,7 @@ func des_encrypt(pt: String, rkb: Array, rk: Array, verbose: bool = true) -> Str
 		_modulate_sprites([s_box_arrow,s_box_trapezoid],true)
 		
 		
-		# Straight D-box permutation
+		# Straight P-box permutation
 		await _modulate_sprites([p_box_arrow,p_box],false)
 		sbox_str = permute(sbox_str, per, 32)
 		_modulate_sprites([p_box_arrow,p_box],true)

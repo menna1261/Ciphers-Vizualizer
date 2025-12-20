@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1xyfipimu0mk"]
+[gd_scene load_steps=3 format=3 uid="uid://0n0qy3rq6aie"]
 
-[ext_resource type="Texture2D" uid="uid://cdwhgs8oeh0fk" path="res://Assets/Rectangle.png" id="1_j1os3"]
-[ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="2_iojkp"]
+[ext_resource type="Texture2D" uid="uid://cdwhgs8oeh0fk" path="res://Assets/Rectangle.png" id="1_fpx88"]
+[ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="2_3mcpj"]
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -9,15 +9,14 @@ anchors_preset = 0
 
 [node name="MatrixCell" type="Sprite2D" parent="."]
 position = Vector2(3.63798e-12, -4.76837e-07)
-scale = Vector2(2, 2)
-texture = ExtResource("1_j1os3")
+texture = ExtResource("1_fpx88")
 
 [node name="Label" type="Label" parent="MatrixCell"]
 offset_left = -49.0
 offset_top = -43.0
 offset_right = 49.0
 offset_bottom = 43.0
-theme_override_fonts/font = ExtResource("2_iojkp")
+theme_override_fonts/font = ExtResource("2_3mcpj")
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 vertical_alignment = 1

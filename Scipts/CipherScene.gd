@@ -24,6 +24,13 @@ var defaultMenuName = ""
 var end = 0
 
 func _ready():
+	
+	DisplayServer.window_set_size(Vector2i(2500, 1800))
+	
+	var screen_size = DisplayServer.screen_get_size()
+	var window_size = DisplayServer.window_get_size()
+	DisplayServer.window_set_position((screen_size - window_size) / 2)
+
 	#get_tree().change_scene_to_file("res://Scenes/ViginereCipher.tscn")
 	defaultMenuName = "Choose Cipher"
 	for i in range(255):
@@ -34,8 +41,6 @@ func _ready():
 		if c == "j":  # merge i/j
 			continue
 		alphabet_list.append(c)
-
-
 	
 func _on_choose_cipher_pressed():
 	cipher_menu.visible = !cipher_menu.visible
@@ -238,7 +243,6 @@ func _create_rectangle(L1x, L1y, L2x, L2y, res1x, res1y, res2x, res2y):
 	DL.lines_to_draw.append({ "a": D, "b": A })
 
 	DL.queue_redraw()
-
 	
 func _on_play_fair_pressed():
 	cipher_menu.visible = !cipher_menu.visible
@@ -277,8 +281,17 @@ func _create_viginere() ->void:
 func _create_des() ->void:
 	get_tree().change_scene_to_file("res://Scenes/DesCipher.tscn")
 
+func _create_ceaser() ->void:
+	get_tree().change_scene_to_file("res://Scenes/CeaserCipher.tscn")
+	
 func _on_des_cipher_pressed() -> void:
 	_set_cipher_name("DES")
 	cipher_menu.visible = false
 	_get_input()
 	_create_des()
+
+func _on_ceaser_pressed() -> void:
+	_set_cipher_name("Ceaser")
+	cipher_menu.visible = false
+	_get_input()
+	_create_ceaser()

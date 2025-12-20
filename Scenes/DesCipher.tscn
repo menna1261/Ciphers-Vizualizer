@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://sn26tgns8dk0"]
 
-[ext_resource type="Script" uid="uid://ckvxlelaql81w" path="res://Scipts/des_cipher.gd" id="1_tsnyi"]
+[ext_resource type="Script" uid="uid://dqs8pjgubraax" path="res://Scipts/des_cipher.gd" id="1_tsnyi"]
 [ext_resource type="Texture2D" uid="uid://cr1k7pct7qu6s" path="res://Assets/background.png" id="2_kpxk5"]
 [ext_resource type="FontFile" uid="uid://bil17e4ufdpeo" path="res://Assets/Pixel Game.otf" id="3_vjrx6"]
 [ext_resource type="Texture2D" uid="uid://boujyh5a7ok8s" path="res://Assets/des_rectangle.svg" id="4_vjrx6"]
